@@ -30,11 +30,11 @@ if intelurl.startswith('https://www.ingress.com/intel?ll=') and intelurl.find('_
 		worksheet.write(initialRow, 3, '')
 		worksheet.write(initialRow, 4, '')
 		# Intel url
-		moyx=''
-		moyy=''
+		moyx=(float(link.split(',')[0])+float(link.split(',')[2])) /2
+		moyy=(float(link.split(',')[1])+float(link.split(',')[3])) /2
 		#moyx=[math]::round( ( ([Double]$link.Split(',')[0]+[Double]$link.Split(',')[2]) /2) ,6)
 		#moyy=[math]::round( ( ([Double]$link.Split(',')[1]+[Double]$link.Split(',')[3]) /2) ,6)
-		worksheet.write(initialRow, 5, 'https://www.ingress.com/intel?ll='+moyx+','+moyy+'&z='+zoom+'&pls='+link)
+		worksheet.write(initialRow, 5, 'https://www.ingress.com/intel?ll='+str(moyx)+','+str(moyy)+'&z='+zoom+'&pls='+link)
 		# GMap Sources
 		worksheet.write(initialRow, 6, 'https://www.google.fr/maps/search/'+link.split(',')[0]+','+link.split(',')[1])
 		# GMap Destinations
