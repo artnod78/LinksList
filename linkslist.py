@@ -3,18 +3,14 @@ import xlsxwriter
 print('saisir une url')
 intelurl = input()
 if intelurl.startswith('https://www.ingress.com/intel?ll=') and intelurl.find('_'):
+	print()
+
 	workbook = xlsxwriter.Workbook('hello.xlsx')
 	worksheet = workbook.add_worksheet('Liste des links')
-	worksheet.write(0, 0, 'Ordre de tir ( a respecter scrupuleusement )')
-	worksheet.write(1, 0, 'Ordre')
-	worksheet.write(1, 1, 'GPS Sources')
-	worksheet.write(1, 2, 'GPS Destination')
-	worksheet.write(1, 3, 'Sources')
-	worksheet.write(1, 4, 'Destination')
-	worksheet.write(1, 5, 'Intel url')
-	worksheet.write(1, 6, 'GMap Sources')
-	worksheet.write(1, 7, 'GMap Destination')
+	titre = workbook.add_format({'bold': True, 'font_color': 'white', 'font_size': 16, 'bg_color': '#9bbb59'})
+	worksheet.write(0, 0, 'Ordre de tir ( a respecter scrupuleusement )', titre)
 	initialRow = 2
+	worksheet.add_table('A2:H'+str(len(intelurl.split('=')[3].split('_'))+initialRow),{'columns': [{'header': 'Ordre'}, {'header': 'GPS Sources'}, {'header': 'GPS Destination'}, {'header': 'GPS Destination'}, {'header': 'Sources'}, {'header': 'Destination'}, {'header': 'Intel url'}, {'header': 'GMap Sources'}, {'header': 'GMap Destination'}]})#, 'style': 'Table Style Light 11'
 	zoom=intelurl.split('=')[2].split('&')[0]
 	for link in intelurl.split('=')[3].split('_'):
 		# Ordre
@@ -35,6 +31,6 @@ if intelurl.startswith('https://www.ingress.com/intel?ll=') and intelurl.find('_
 		# GMap Destinations
 		worksheet.write(initialRow, 7, 'https://www.google.fr/maps/search/'+link.split(',')[2]+','+link.split(',')[3])
 		initialRow += 1
-	workbook.close()  
+	workbook.close()
 else:
 	print('Mauvaise url!')
