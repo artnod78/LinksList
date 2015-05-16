@@ -37,7 +37,7 @@ function gen_list($url){
         }
         $callEndTime = microtime(true);
         $callTime = $callEndTime - $callStartTime;
-        echo date('H:i:s').' Liste des liense genere en '.sprintf('%.4f',$callTime).' secondes<br>';
+        echo date('H:i:s').' Liste des liens genere en '.sprintf('%.4f',$callTime).' secondes<br>';
         return $list_data;
 }
 function gen_table($list){
@@ -109,13 +109,7 @@ function drive_push(){
         echo date('H:i:s').' Drive push en '.sprintf('%.4f',$callTime).' secondes<br>';
 }
 ?>
-<h1>Links List</h1>
-<form action="index.php" method="post">
-    <p>
-		<input type="text" name="IntelUrl" />
-		<input type="submit" value="Valider" />
-	</p>
-</form>
+<h1><a href="./">Links List</a></h1>
 <?php
 	if (test_url($_POST['IntelUrl'])){
 		echo '<p>'.date('H:i:s').' Url ok<br>';
@@ -126,7 +120,13 @@ function drive_push(){
 		echo '<p>'.gen_table($list).'</p>';
 		gen_xls($list, $_POST['IntelUrl']);
 		drive_push();
+	}else{
+		echo '<form action="./" method="post">
+			<p>
+			<input type="text" name="IntelUrl" />
+			<input type="submit" value="Valider" />
+			</p>
+			</form>';
 	}
 ?>
 <p>v0.1</p>
-
