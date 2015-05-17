@@ -43,25 +43,40 @@ function gen_list($url){
 function gen_list_key($list){
 	$loop=0;
 	foreach($list as $link){
-		$list_dest[$loop]=$list[2];
+		if($loop >= 1){
+			$list_dest[$loop - 1]=$link[2];
+		}
 		$loop++;
-	}	
-	$list_key=array_count_values($list_dest);
+	}
+	$list_key = array_count_values($list_dest);
 	return $list_key;
 }
 function gen_table($list){
 	$callStartTime = microtime(true);
         $starter = 'http';
         $table = '<table border="1">';
-        foreach($list as $link){
-                $table .= '<tr>';
-                foreach($link as $value){
-                        if(substr($value, 0, strlen($starter)) === $starter)
-                                $table .= '<th><a href="'.$value.'">url ici</a></th>';
-                        else
+        $loop=0;
+	foreach($list as $link){
+                if($loop == 0 ){
+			$table .= '<tr>';
+                	foreach($link as $value){
                                 $table .= '<th>'.$value.'</th>';
+                	}
+                	$table .= '</tr>';
+		}
+		else{
+			$table .= '<tr>';
+                	foreach($link as $value){
+                	        if(substr($value, 0, strlen($starter)) === $starter){
+                	                $table .= '<td><a href="'.$value.'">url ici</a></td>';
+				}
+				else{
+                	                $table .= '<td>'.$value.'</td>';
+				}
+                	}
+                	$table .= '</tr>';
                 }
-                $table .= '</tr>';
+		$loop++;
         }
         $table .= '</table>';
         $callEndTime = microtime(true);
@@ -127,7 +142,13 @@ function drive_push(){
 		$nblink=count($list)-1;
 		echo date('H:i:s').' '.$nblink.' liens<br>';
 		echo '<p>'.gen_table($list).'</p>';
-		echo '<p>'.gen_table(gen_list_key($list)).'</p>';
+		$list_key = gen_list_key($list);
+		echo '<table border="1"><tr><th>Portail Destination</th><th>Nb cle</th><th>Intel Url</th></tr>';
+		foreach ($list_key as $clef => $valeur) {
+                	echo '<tr><td>'.$clef.'</td><td>'.$valeur.'</td><td><a href="http://www.ingress.com/intel?pll='.$clef.'"> Url ici</a></td></tr>';
+            	}
+		echo '</table>';
+
 		gen_xls($list, $_POST['IntelUrl']);
 		drive_push();
 	}else{
