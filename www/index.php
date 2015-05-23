@@ -104,7 +104,8 @@ function gen_xls($list, $name = NULL) {
 		$name = md5(uniqid() . microtime(TRUE) . mt_rand());
 	}else{
         	$name= md5($name);
-    	}
+    }
+	echo '<p>'.date('H:i:s').' Nom du fichier: '.$name.'<br>';
 	date_default_timezone_set('Europe/Paris');
 	require_once('Classes/PHPExcel.php');
 	// Create new PHPExcel object
