@@ -143,8 +143,8 @@ function drive_push(){
 	$callStartTime = microtime(true);
 	exec('cd /home/artnod/gdrive && ../gopath/bin/drive push -quiet');
 	$callEndTime = microtime(true);
-        $callTime = $callEndTime - $callStartTime;
-        echo date('H:i:s').' Drive push en '.sprintf('%.4f',$callTime).' secondes';
+    $callTime = $callEndTime - $callStartTime;
+    return date('H:i:s').' Drive push en '.sprintf('%.4f',$callTime).' secondes';
 }
 ?>
 <h1><a href="./">Links List</a></h1>
