@@ -53,7 +53,7 @@ function gen_list_key($list){
 	$list_key = array_count_values($list_dest);
 	return $list_key;
 }
-function gen_table($list){
+function gen_list_table($list){
 	$callStartTime = microtime(true);
         $starter = 'http';
         $table = '<table border="1">';
@@ -154,7 +154,7 @@ function drive_push(){
 		echo date('H:i:s').'<a href="'.$_POST['IntelUrl'].'"> Url saisi</a></p>';
 
 		$list = gen_list($_POST['IntelUrl']);		
-		echo '<p>'.gen_table($list).'</p>';
+		echo '<p>'.gen_list_table($list).'</p>';
 		
 		echo '<p>'.gen_key_table($list).'</p>';
 		gen_xls($list, $_POST['IntelUrl']);
