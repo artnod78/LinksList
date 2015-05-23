@@ -135,9 +135,7 @@ function gen_xls($list, $name = NULL) {
 	$callEndTime = microtime(true);
 	$callTime = $callEndTime - $callStartTime;
 	echo date('H:i:s').' Sauvegarde au format Excel 95 en '.sprintf('%.4f',$callTime).' secondes<br>';
-	echo date('H:i:s').' Fichier disponible <a href="xls/'.$name.'.xls">ici</a><br>';
-	// Fin
-	echo date('H:i:s').' Fin.</p>';
+	echo date('H:i:s').' Fichier disponible <a href="xls/'.$name.'.xls">ici</a></p>';
 }
 function drive_push(){
 	$callStartTime = microtime(true);
