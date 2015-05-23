@@ -144,7 +144,7 @@ function drive_push(){
 	exec('cd /home/artnod/gdrive && ../gopath/bin/drive push -quiet');
 	$callEndTime = microtime(true);
     $callTime = $callEndTime - $callStartTime;
-    echo date('H:i:s').' Drive push en '.sprintf('%.4f',$callTime).' secondes';
+    echo '<p>'.date('H:i:s').' Drive push en '.sprintf('%.4f',$callTime).' secondes</p>';
 }
 ?>
 <h1><a href="./">Links List</a></h1>
@@ -158,9 +158,7 @@ function drive_push(){
 		echo '<p>'.gen_table($list).'</p>';
 		echo '<p>'.gen_key_table($list).'</p>';
 		gen_xls($list, $_POST['IntelUrl']);
-		echo '<p>';
-		gdrive_push();
-		echo '</p>';
+		drive_push();
 	}else{
 		echo '<form action="./" method="post">
 			<p>
