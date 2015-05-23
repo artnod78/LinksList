@@ -40,6 +40,15 @@ function gen_list($url){
         echo date('H:i:s').' Liste des liens genere en '.sprintf('%.4f',$callTime).' secondes<br>';
         return $list_data;
 }
+function gen_list_key($list){
+	$loop=0;
+	foreach($list as $link){
+		$list_dest[$loop]=$list[2];
+		$loop++;
+	}	
+	$list_key=array_count_values($list_dest);
+	return $list_key;
+}
 function gen_table($list){
 	$callStartTime = microtime(true);
         $starter = 'http';
@@ -118,6 +127,7 @@ function drive_push(){
 		$nblink=count($list)-1;
 		echo date('H:i:s').' '.$nblink.' liens<br>';
 		echo '<p>'.gen_table($list).'</p>';
+		echo '<p>'.gen_table(gen_list_key($list)).'</p>';
 		gen_xls($list, $_POST['IntelUrl']);
 		drive_push();
 	}else{
@@ -129,4 +139,4 @@ function drive_push(){
 			</form>';
 	}
 ?>
-<p>v0.1</p>
+<p>v0.2</p>
