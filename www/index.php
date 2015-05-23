@@ -87,11 +87,11 @@ function gen_table($list){
 
 function gen_key_table($list){
 	$callStartTime = microtime(true);
-	echo '<table border="1"><tr><th>Portail Destination</th><th>Nb cle</th><th>Intel Url</th></tr>';
+	$table = '<table border="1"><tr><th>Portail Destination</th><th>Nb cle</th><th>Intel Url</th></tr>';
 	foreach (gen_list_key($list) as $clef => $valeur) {
-        echo '<tr><td>'.$clef.'</td><td>'.$valeur.'</td><td><a href="http://www.ingress.com/intel?pll='.$clef.'"> Url ici</a></td></tr>';
+        $table .= '<tr><td>'.$clef.'</td><td>'.$valeur.'</td><td><a href="http://www.ingress.com/intel?pll='.$clef.'"> Url ici</a></td></tr>';
     }
-	echo '</table>';
+	$table .= '</table>';
     $callEndTime = microtime(true);
     $callTime = $callEndTime - $callStartTime;
     echo date('H:i:s').' Tableau genere en '.sprintf('%.4f',$callTime).' secondes</p>';
