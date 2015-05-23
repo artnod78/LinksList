@@ -84,6 +84,20 @@ function gen_table($list){
         echo date('H:i:s').' Tableau genere en '.sprintf('%.4f',$callTime).' secondes</p>';
         return $table;
 }
+
+function gen_key_table($list){
+	$callStartTime = microtime(true);
+	echo '<table border="1"><tr><th>Portail Destination</th><th>Nb cle</th><th>Intel Url</th></tr>';
+	foreach (gen_list_key($list) as $clef => $valeur) {
+        echo '<tr><td>'.$clef.'</td><td>'.$valeur.'</td><td><a href="http://www.ingress.com/intel?pll='.$clef.'"> Url ici</a></td></tr>';
+    }
+	echo '</table>';
+    $callEndTime = microtime(true);
+    $callTime = $callEndTime - $callStartTime;
+    echo date('H:i:s').' Tableau genere en '.sprintf('%.4f',$callTime).' secondes</p>';
+    return $table;
+}
+
 function gen_xls($list, $name = NULL) {
 	echo '<p>'.date('H:i:s').' Debut de la generation des xls<br>';
 	if( ! $name){
@@ -130,7 +144,7 @@ function drive_push(){
 	exec('cd /home/artnod/gdrive && ../gopath/bin/drive push -quiet');
 	$callEndTime = microtime(true);
         $callTime = $callEndTime - $callStartTime;
-        echo date('H:i:s').' Drive push en '.sprintf('%.4f',$callTime).' secondes<br>';
+        echo date('H:i:s').' Drive push en '.sprintf('%.4f',$callTime).' secondes';
 }
 ?>
 <h1><a href="./">Links List</a></h1>
@@ -142,15 +156,9 @@ function drive_push(){
 		$nblink=count($list)-1;
 		echo date('H:i:s').' '.$nblink.' liens<br>';
 		echo '<p>'.gen_table($list).'</p>';
-		$list_key = gen_list_key($list);
-		echo '<table border="1"><tr><th>Portail Destination</th><th>Nb cle</th><th>Intel Url</th></tr>';
-		foreach ($list_key as $clef => $valeur) {
-                	echo '<tr><td>'.$clef.'</td><td>'.$valeur.'</td><td><a href="http://www.ingress.com/intel?pll='.$clef.'"> Url ici</a></td></tr>';
-            	}
-		echo '</table>';
-
+		echo '<p>'.gen_key_table($list).'</p>';
 		gen_xls($list, $_POST['IntelUrl']);
-		drive_push();
+		echo '<p>'.gdrive_push().'</p>';
 	}else{
 		echo '<form action="./" method="post">
 			<p>
