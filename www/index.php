@@ -105,7 +105,7 @@ function gen_xls($list, $name = NULL) {
 	}else{
         	$name= md5($name);
     }
-	echo .date('H:i:s').' Nom du fichier: '.$name.'<br>';
+	echo .date('H:i:s').' Nom du fichier: <b>'.$name.'</b><br>';
 	date_default_timezone_set('Europe/Paris');
 	require_once('Classes/PHPExcel.php');
 	// Create new PHPExcel object
