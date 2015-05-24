@@ -95,7 +95,6 @@ function gen_table($list){
 }
 
 function gen_xls($list_link, $list_key, $name = NULL) {
-	echo '<p>Début de la génération des xls<br>';
 	if( ! $name){
 		$name = md5(uniqid() . microtime(TRUE) . mt_rand());
 	}else{
@@ -105,8 +104,6 @@ function gen_xls($list_link, $list_key, $name = NULL) {
 	date_default_timezone_set('Europe/Paris');
 	require_once('Classes/PHPExcel.php');
 	// Create new PHPExcel object
-	echo 'Création de l\'objet PHPExcel<br>';
-	$callStartTime = microtime(true);
 	$objPHPExcel = new PHPExcel();	
 	// Create a first sheet, representing sales data
 	$objPHPExcel->setActiveSheetIndex(0);
@@ -117,26 +114,18 @@ function gen_xls($list_link, $list_key, $name = NULL) {
 	$objPHPExcel->setActiveSheetIndex(1);
 	$objPHPExcel->getActiveSheet()->fromArray($list_key, null, 'A1');
 	$objPHPExcel->getActiveSheet()->setTitle('Key List');
-	$callEndTime = microtime(true);
-	$callTime = $callEndTime - $callStartTime;
-	echo 'Ajout des données en '.sprintf('%.4f',$callTime).' secondes</p>';
 
 	// Save Excel 2007 file
-	$callStartTime = microtime(true);
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	$objWriter->save('xlsx/'.$name.'.xlsx');
-	$callEndTime = microtime(true);
-	$callTime = $callEndTime - $callStartTime;
-	echo '<p>Sauvegarde au format Excel 2007 en '.sprintf('%.4f',$callTime).' secondes<br>';
+	echo '<p>Sauvegarde au format Excel 2007<br>';
 	echo 'Fichier disponible <a href="xlsx/'.$name.'.xlsx">ici</a></p>';
 
 	// Save Excel 95 file
 	$callStartTime = microtime(true);
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 	$objWriter->save('xls/'.$name.'.xls');
-	$callEndTime = microtime(true);
-	$callTime = $callEndTime - $callStartTime;
-	echo '<p>Sauvegarde au format Excel 95 en '.sprintf('%.4f',$callTime).' secondes<br>';
+	echo '<p>Sauvegarde au format Excel 95<br>';
 	echo 'Fichier disponible <a href="xls/'.$name.'.xls">ici</a></p>';
 }
 
