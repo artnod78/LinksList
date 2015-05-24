@@ -144,8 +144,8 @@ function drive_push(){
 		$list_link = gen_list_link($url);
 		$list_key=gen_list_key($list_link);
 		
-		echo gen_table($list_link).'</p>';
-		echo gen_table($list_key).'</p>';
+		echo gen_table($list_link);
+		echo gen_table($list_key);
 		
 		gen_xls($list_link, $list_key, $_POST['IntelUrl']);
 		
