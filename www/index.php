@@ -57,7 +57,7 @@ function gen_list_key($list){
 	$list_nbkey = array_values($list_key);
 	$loop=1;
 	while($loop <= count($list_key)){
-		echo $loop;
+		$list_data[$loop]= array($list_dest[$loop],$list_nbkey[$loop],$list_dest[$loop]);
 		$loop++;
 	}
 }
