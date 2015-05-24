@@ -60,9 +60,9 @@ function gen_list_key($list){
 	$nblink=count($list_key);
 	$nbkey=array_sum($list_key);
 	$list_data[0]= array('destination','nb cle','intel url');
-	$loop=1;
+	$loop=0;
 	while($loop < $nblink){
-		$list_data[$loop]= array($list_dest[$loop - 1],$list_nbkey[$loop - 1],'https://www.ingress.com/intel?pll='.$list_dest[$loop - 1]);
+		$list_data[$loop + 1] = array($list_dest[$loop],$list_nbkey[$loop],'https://www.ingress.com/intel?pll='.$list_dest[$loop]);
 		$loop++;
 	}
 	print_r($list_data);
