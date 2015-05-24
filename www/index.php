@@ -175,7 +175,7 @@ function drive_push(){
 		
 		gen_xls($list_link, $list_key, $_POST['IntelUrl']);
 		
-		drive_push();
+		//drive_push();
 	}
 	else{
 		echo '<form action="./" method="post">
