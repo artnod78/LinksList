@@ -39,7 +39,7 @@ function gen_list_link($url){
     }
     $callEndTime = microtime(true);
     $callTime = $callEndTime - $callStartTime;
-    echo '<p>Liste des liens genere en '.sprintf('%.4f',$callTime).' secondes<br>';
+    echo '<p>Liste des liens généré en '.sprintf('%.4f',$callTime).' secondes<br>';
 	$nblink=count($list_data)-1;
 	echo $nblink.' liens</p>';
     return $list_data;
@@ -67,7 +67,7 @@ function gen_list_key($list){
 	}
 	$callEndTime = microtime(true);
     $callTime = $callEndTime - $callStartTime;
-    echo '<p>Liste des cle genere en '.sprintf('%.4f',$callTime).' secondes<br>';
+    echo '<p>Liste des clés génére en '.sprintf('%.4f',$callTime).' secondes<br>';
 	echo $nblink.' destinations<br>';
 	echo $nbkey.' clé</p>';
 	return $list_data;
@@ -103,12 +103,12 @@ function gen_table($list){
         $table .= '</table>';
         $callEndTime = microtime(true);
         $callTime = $callEndTime - $callStartTime;
-        echo 'Tableau genere en '.sprintf('%.4f',$callTime).' secondes</p>';
+        echo 'Tableau généré en '.sprintf('%.4f',$callTime).' secondes</p>';
         return $table;
 }
 
 function gen_xls($list_link, $list_key, $name = NULL) {
-	echo '<p>Debut de la generation des xls<br>';
+	echo '<p>Début de la génération des xls<br>';
 	if( ! $name){
 		$name = md5(uniqid() . microtime(TRUE) . mt_rand());
 	}else{
@@ -118,7 +118,7 @@ function gen_xls($list_link, $list_key, $name = NULL) {
 	date_default_timezone_set('Europe/Paris');
 	require_once('Classes/PHPExcel.php');
 	// Create new PHPExcel object
-	echo 'Creation de l\'objet PHPExcel<br>';
+	echo 'Création de l\'objet PHPExcel<br>';
 	$callStartTime = microtime(true);
 	$objPHPExcel = new PHPExcel();	
 	// Create a first sheet, representing sales data
@@ -132,7 +132,7 @@ function gen_xls($list_link, $list_key, $name = NULL) {
 	$objPHPExcel->getActiveSheet()->setTitle('Key List');
 	$callEndTime = microtime(true);
 	$callTime = $callEndTime - $callStartTime;
-	echo 'Ajout des donnees en '.sprintf('%.4f',$callTime).' secondes</p>';
+	echo 'Ajout des données en '.sprintf('%.4f',$callTime).' secondes</p>';
 
 	// Save Excel 2007 file
 	$callStartTime = microtime(true);
