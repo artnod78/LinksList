@@ -47,11 +47,13 @@ function gen_list_key($list){
 	$loop=0;
 	foreach($list as $link){
 		if($loop >= 1){
-			$list_dest[$loop - 1]=$link[2];
+			$list_temp[$loop - 1]=$link[2];
 		}
 		$loop++;
 	}
-	$list_key = array_count_values($list_dest);
+	$list_key = array_count_values($list_temp);
+	print_r $list_key;
+	$list_data[0] = array('Destination', 'Nb cle', 'intel_url');
 	$callEndTime = microtime(true);
     $callTime = $callEndTime - $callStartTime;
     echo '<p>'.date('H:i:s').' Liste des key genere en '.sprintf('%.4f',$callTime).' secondes<br>';
@@ -63,15 +65,15 @@ function gen_list_key($list){
 }
 function gen_list_table($list){
 	$callStartTime = microtime(true);
-        $starter = 'http';
-        $table = '<table border="1">';
-        $loop=0;
+    $starter = 'http';
+    $table = '<table border="1">';
+    $loop=0;
 	foreach($list as $link){
-                if($loop == 0 ){
+        if($loop == 0 ){
 			$table .= '<tr>';
-                	foreach($link as $value){
-                                $table .= '<th>'.$value.'</th>';
-                	}
+        foreach($link as $value){
+            $table .= '<th>'.$value.'</th>';
+        }
                 	$table .= '</tr>';
 		}
 		else{
@@ -96,9 +98,16 @@ function gen_list_table($list){
 }
 function gen_key_table($list){
 	$callStartTime = microtime(true);
-	$table = '<table border="1"><tr><th>Portail Destination</th><th>Nb cle</th><th>Intel Url</th></tr>';
+	$table = '<table border="1">';
+	$loop=0;
 	foreach ($list as $clef => $valeur) {
-        $table .= '<tr><td>'.$clef.'</td><td>'.$valeur.'</td><td><a href="http://www.ingress.com/intel?pll='.$clef.'"> Url ici</a></td></tr>';
+		if($loop == 0){
+			$table .= '<tr><th>'.$clef.'</th><th>'.$valeur.'</th><th><a href="http://www.ingress.com/intel?pll='.$clef.'"> Url ici</a></th></tr>';
+		}
+		else{
+			$table .= '<tr><td>'.$clef.'</td><td>'.$valeur.'</td><td><a href="http://www.ingress.com/intel?pll='.$clef.'"> Url ici</a></td></tr>';
+		}
+        $loop++;
     }
 	$table .= '</table>';
     $callEndTime = microtime(true);
@@ -168,7 +177,7 @@ function drive_push(){
 
 		$list_link = gen_list_link($_POST['IntelUrl']);
 		$list_link = gen_list_key($list_link);
-		
+		print_r $list_link;
 		echo '<p>'.gen_list_table($list_link).'</p>';
 		
 		echo '<p>'.gen_key_table($list_key).'</p>';
