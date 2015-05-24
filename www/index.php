@@ -68,12 +68,14 @@ function gen_list_key($list){
 	echo '<br>';
 	$nbkey=array_sum($list_key);
 	print_r($nbkey);
+	echo '<br>';
 	$list_data[0]= array('destination','nb cle','intel url');
 	$loop=1;
 	while($loop < $nblink){
 		$list_data[$loop]= array($list_dest[$loop - 1],$list_nbkey[$loop - 1],'https://www.ingress.com/intel?pll='.$list_dest[$loop - 1]);
 		$loop++;
 	}
+	print_r($list_data);
 	$callEndTime = microtime(true);
     $callTime = $callEndTime - $callStartTime;
     echo '<p>Liste des clés génére en '.sprintf('%.4f',$callTime).' secondes<br>';
