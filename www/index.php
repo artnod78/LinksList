@@ -103,7 +103,7 @@ function gen_table($list){
         $table .= '</table>';
         $callEndTime = microtime(true);
         $callTime = $callEndTime - $callStartTime;
-        echo 'Tableau généré en '.sprintf('%.4f',$callTime).' secondes</p>';
+        echo '<p>Tableau généré en '.sprintf('%.4f',$callTime).' secondes';
         return $table;
 }
 
@@ -168,10 +168,10 @@ function drive_push(){
 		echo '<a href="'.$_POST['IntelUrl'].'">Url saisi</a></p>';
 		
 		$list_link = gen_list_link($url);
-		echo '<p>'.gen_table($list_link).'</p>';
+		echo gen_table($list_link).'</p>';
 		
 		$list_key=gen_list_key($list_link);
-		echo '<p>'.gen_table($list_key).'</p>';
+		echo gen_table($list_key).'</p>';
 		
 		gen_xls($list_link, $list_key, $_POST['IntelUrl']);
 		
