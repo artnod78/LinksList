@@ -37,7 +37,7 @@ function gen_list_link($url){
         $loop++;
     }
 	$nblink=count($list_data)-1;
-	echo $nblink.' liens';
+	echo $nblink.' liens<br>';
     return $list_data;
 }
 
