@@ -37,7 +37,7 @@ function gen_list_link($url){
         $loop++;
     }
 	$nblink=count($list_data)-1;
-	echo $nblink.' liens<br>';
+	echo '<p>'.$nblink.' liens<br>';
     return $list_data;
 }
 
@@ -144,8 +144,8 @@ function drive_push(){
 		$list_link = gen_list_link($url);
 		$list_key=gen_list_key($list_link);
 		
-		echo gen_table($list_link);
-		echo gen_table($list_key);
+		echo '<p>'.gen_table($list_link).'</p>';
+		echo '<p>'.gen_table($list_key).'</p>';
 		
 		gen_xls($list_link, $list_key, $_POST['IntelUrl']);
 		
