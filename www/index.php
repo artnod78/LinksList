@@ -114,13 +114,11 @@ function gen_xls($list_link, $list_key, $name = NULL) {
 	$objPHPExcel->setActiveSheetIndex(1);
 	$objPHPExcel->getActiveSheet()->fromArray($list_key, null, 'A1');
 	$objPHPExcel->getActiveSheet()->setTitle('Key List');
-
 	// Save Excel 2007 file
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	$objWriter->save('xlsx/'.$name.'.xlsx');
 	echo '<p>Sauvegarde au format Excel 2007<br>';
 	echo 'Fichier disponible <a href="xlsx/'.$name.'.xlsx">ici</a></p>';
-
 	// Save Excel 95 file
 	$callStartTime = microtime(true);
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
