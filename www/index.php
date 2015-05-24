@@ -166,7 +166,7 @@ function drive_push(){
 		echo '<p>'.date('H:i:s').' Url ok<br>';
 		echo date('H:i:s').'<a href="'.$_POST['IntelUrl'].'"> Url saisi</a></p>';
 
-		$list_link = gen_list($_POST['IntelUrl']);
+		$list_link = gen_list_link($_POST['IntelUrl']);
 		$list_link = gen_list_key($list_link);
 		
 		echo '<p>'.gen_list_table($list_link).'</p>';
