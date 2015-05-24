@@ -55,14 +55,10 @@ function gen_list_key($list){
 	$list_key = array_count_values($list_temp);
 	$list_dest = array_keys($list_key);
 	$list_nbkey = array_values($list_key);
-	
+	print_r($list_dest);
+	print_r($list_nbkey);
 	$list_data[0] = array('Destination', 'Nb cle', 'intel_url');
-	$loop=1;
-	$nbkey = count($list_key);
-	while($loop <= $nbkey){
-		list_data[$loop] =array($list_dest[$loop], $list_nbkey[$loop], 'www.ingress.com/intel/pll='.$list_dest[$loop]);
-		$loop++;
-	}
+
 }
 
 ?>
