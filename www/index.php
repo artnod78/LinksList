@@ -43,6 +43,28 @@ function gen_list_link($url){
 		echo date('H:i:s').' '.$nblink.' liens</p>';
         return $list_data;
 }
+
+function gen_list_key($list){
+	$loop=0;
+	foreach($list as $link){
+		if($loop >= 1){
+			$list_temp=[$loop - 1]=$link[2];
+		}
+		$loop++;
+	}
+	$list_key = array_count_values($list_temp);
+	$list_dest = array_keys($list_key);
+	$list_nbkey = array_values($list_key);
+	
+	$list_data[0] = array('Destination', 'Nb cle', 'intel_url');
+	$loop=1;
+	while($loop <= count($list_key)){
+		list_data[$loop] =array($list_dest[$loop], $list_nbkey[$loop], 'www.ingress.com/intel/pll='.$list_dest[$loop]);
+		$loop++;
+	}
+	print_r(list_data);
+}
+
 ?>
 <h1><a href="./">Links List</a></h1>
 <?php
@@ -50,7 +72,9 @@ function gen_list_link($url){
 		echo '<p>'.date('H:i:s').' Url ok<br>';
 		echo date('H:i:s').'<a href="'.$_POST['IntelUrl'].'"> Url saisi</a></p>';
 		$list_link = gen_list_link($url);
-		print_r($list_link);
+		gen_list_key($list_link)
+		
+
 	}
 	else{
 		echo '<form action="./" method="post">
