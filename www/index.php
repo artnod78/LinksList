@@ -55,7 +55,7 @@ function gen_list_key($list){
 	$list_key = array_count_values($list_temp);
 	$list_dest = array_keys($list_key);
 	$list_nbkey = array_values($list_key);
-	print_r(count($list_key));
+	echo count($list_key);
 }
 
 ?>
