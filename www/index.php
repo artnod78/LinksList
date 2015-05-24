@@ -39,9 +39,7 @@ function gen_list_link($url){
     }
     $callEndTime = microtime(true);
     $callTime = $callEndTime - $callStartTime;
-    echo '<p>'.date('H:i:s').' Liste des liens genere en '.sprintf('%.4f',$callTime).' secondes<br>';
 	$nblink=count($list_data)-1;
-	echo date('H:i:s').' '.$nblink.' liens</p>';
     return $list_data;
 }
 
@@ -67,9 +65,6 @@ function gen_list_key($list){
 	}
 	$callEndTime = microtime(true);
     $callTime = $callEndTime - $callStartTime;
-    echo '<p>'.date('H:i:s').' Liste des cle genere en '.sprintf('%.4f',$callTime).' secondes<br>';
-	echo date('H:i:s').' '.$nblink.' destinations<br>';
-	echo date('H:i:s').' '.$nbkey.' clé</p>';
 	return $list_data;
 }
 
@@ -103,18 +98,15 @@ function gen_table($list){
         $table .= '</table>';
         $callEndTime = microtime(true);
         $callTime = $callEndTime - $callStartTime;
-        echo date('H:i:s').' Tableau genere en '.sprintf('%.4f',$callTime).' secondes</p>';
         return $table;
 }
 
 function gen_xls($list_link, $list_key, $name = NULL) {
-	echo '<p>'.date('H:i:s').' Debut de la generation des xls<br>';
 	if( ! $name){
 		$name = md5(uniqid() . microtime(TRUE) . mt_rand());
 	}else{
         	$name= md5($name);
     }
-	echo date('H:i:s').' Nom du fichier: <b>'.$name.'</b><br>';
 	date_default_timezone_set('Europe/Paris');
 	require_once('Classes/PHPExcel.php');
 	// Create new PHPExcel object
@@ -132,7 +124,6 @@ function gen_xls($list_link, $list_key, $name = NULL) {
 	$objPHPExcel->getActiveSheet()->setTitle('Key List');
 	$callEndTime = microtime(true);
 	$callTime = $callEndTime - $callStartTime;
-	echo date('H:i:s').' Ajout des donnees en '.sprintf('%.4f',$callTime).' secondes</p>';
 
 	// Save Excel 2007 file
 	$callStartTime = microtime(true);
@@ -140,8 +131,6 @@ function gen_xls($list_link, $list_key, $name = NULL) {
 	$objWriter->save('xlsx/'.$name.'.xlsx');
 	$callEndTime = microtime(true);
 	$callTime = $callEndTime - $callStartTime;
-	echo '<p>'.date('H:i:s').' Sauvegarde au format Excel 2007 en '.sprintf('%.4f',$callTime).' secondes<br>';
-	echo date('H:i:s').' Fichier disponible <a href="xlsx/'.$name.'.xlsx">ici</a></p>';
 
 	// Save Excel 95 file
 	$callStartTime = microtime(true);
@@ -149,8 +138,6 @@ function gen_xls($list_link, $list_key, $name = NULL) {
 	$objWriter->save('xls/'.$name.'.xls');
 	$callEndTime = microtime(true);
 	$callTime = $callEndTime - $callStartTime;
-	echo '<p>'.date('H:i:s').' Sauvegarde au format Excel 95 en '.sprintf('%.4f',$callTime).' secondes<br>';
-	echo date('H:i:s').' Fichier disponible <a href="xls/'.$name.'.xls">ici</a></p>';
 }
 
 function drive_push(){
@@ -158,14 +145,11 @@ function drive_push(){
 	exec('cd /home/artnod/gdrive && ../gopath/bin/drive push -convert -quiet');
 	$callEndTime = microtime(true);
     $callTime = $callEndTime - $callStartTime;
-    echo '<p>'.date('H:i:s').' Drive push en '.sprintf('%.4f',$callTime).' secondes</p>';
 }
 ?>
 <h1><a href="./">Links List</a></h1>
 <?php
 	if (test_url($_POST['IntelUrl'])){
-		echo '<p>'.date('H:i:s').' Url ok<br>';
-		echo date('H:i:s').' <a href="'.$_POST['IntelUrl'].'">Url saisi</a></p>';
 		
 		$list_link = gen_list_link($url);
 		echo '<p>'.gen_table($list_link).'</p>';
