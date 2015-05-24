@@ -48,7 +48,7 @@ function gen_list_key($list){
 	$loop=0;
 	foreach($list as $link){
 		if($loop >= 1){
-			$list_temp=[$loop - 1]=$link[2];
+			$list_temp[$loop - 1]=$link[2];
 		}
 		$loop++;
 	}
