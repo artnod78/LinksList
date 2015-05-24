@@ -57,7 +57,7 @@ function gen_list_key($list){
 	$list_nbkey = array_values($list_key);
 	$loop=1;
 	$list_data[0]= array('destination','nb cle','intel url');
-	while($loop <= count($list_key)){
+	while($loop < count($list_key)){
 		$list_data[$loop]= array($list_dest[$loop],$list_nbkey[$loop],'www.ingress.com/intel?pll='.$list_dest[$loop]);
 		$loop++;
 	}
