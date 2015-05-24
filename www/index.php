@@ -68,7 +68,7 @@ function gen_list_key($list){
 	$callEndTime = microtime(true);
     $callTime = $callEndTime - $callStartTime;
     echo '<p>'.date('H:i:s').' Liste des cle genere en '.sprintf('%.4f',$callTime).' secondes<br>';
-	echo date('H:i:s').' '.$nblink.' destinations</p>';
+	echo date('H:i:s').' '.$nblink.' destinations<br>';
 	echo date('H:i:s').' '.$nbkey.' clé</p>';
 	return $list_data;
 }
