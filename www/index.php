@@ -56,10 +56,12 @@ function gen_list_key($list){
 	$list_dest = array_keys($list_key);
 	$list_nbkey = array_values($list_key);
 	$loop=1;
+	$list_data[0]= array('destination','nb cle','intel url');
 	while($loop <= count($list_key)){
 		$list_data[$loop]= array($list_dest[$loop],$list_nbkey[$loop],$list_dest[$loop]);
 		$loop++;
 	}
+	print_r($list_data);
 }
 
 ?>
