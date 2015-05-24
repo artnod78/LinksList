@@ -182,6 +182,7 @@ function drive_push(){
 			<p>
 			<input type="text" name="IntelUrl" />
 			<input type="submit" value="Valider" />
+			exemple: https://www.ingress.com/intel?ll=48.853559,2.348869&z=19&pls=48.853356,2.348783,48.853624,2.349053_48.853356,2.348783,48.853761,2.348867_48.853761,2.348867,48.853624,2.349053
 			</p>
 			</form>';
 	}
