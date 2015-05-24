@@ -50,6 +50,7 @@ function gen_list_link($url){
 		echo '<p>'.date('H:i:s').' Url ok<br>';
 		echo date('H:i:s').'<a href="'.$_POST['IntelUrl'].'"> Url saisi</a></p>';
 		$list_link = gen_list_link($url);
+		print_r($list_link);
 	}
 	else{
 		echo '<form action="./" method="post">
