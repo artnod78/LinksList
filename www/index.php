@@ -187,4 +187,4 @@ function drive_push(){
 			</form>';
 	}
 ?>
-<p>v0.3</p>
+<p>v0.4</p>
