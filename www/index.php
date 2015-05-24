@@ -61,7 +61,7 @@ function gen_list_key($list){
 	$nbkey=count($list_key);
 	$list_data[0]= array('destination','nb cle','intel url');
 	while($loop < $nbkey){
-		$list_data[$loop]= array($list_dest[$loop],$list_nbkey[$loop],'www.ingress.com/intel?pll='.$list_dest[$loop]);
+		$list_data[$loop]= array($list_dest[$loop],$list_nbkey[$loop],'https://www.ingress.com/intel?pll='.$list_dest[$loop]);
 		$loop++;
 	}
 	$callEndTime = microtime(true);
