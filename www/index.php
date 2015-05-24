@@ -71,15 +71,49 @@ function gen_list_key($list){
 	return $list_data;
 }
 
+function gen_table($list){
+	$callStartTime = microtime(true);
+    $starter = 'http';
+    $table = '<table border="1">';
+    $loop=0;
+	foreach($list as $link){
+        if($loop == 0 ){
+			$table .= '<tr>';
+        foreach($link as $value){
+            $table .= '<th>'.$value.'</th>';
+        }
+                	$table .= '</tr>';
+		}
+		else{
+			$table .= '<tr>';
+                	foreach($link as $value){
+                	        if(substr($value, 0, strlen($starter)) === $starter){
+                	                $table .= '<td><a href="'.$value.'">url ici</a></td>';
+				}
+				else{
+                	                $table .= '<td>'.$value.'</td>';
+				}
+                	}
+                	$table .= '</tr>';
+                }
+		$loop++;
+        }
+        $table .= '</table>';
+        $callEndTime = microtime(true);
+        $callTime = $callEndTime - $callStartTime;
+        echo date('H:i:s').' Tableau genere en '.sprintf('%.4f',$callTime).' secondes</p>';
+        return $table;
+}
 ?>
 <h1><a href="./">Links List</a></h1>
 <?php
 	if (test_url($_POST['IntelUrl'])){
 		echo '<p>'.date('H:i:s').' Url ok<br>';
-		echo date('H:i:s').'<a href="'.$_POST['IntelUrl'].'"> Url saisi</a></p>';
+		echo date('H:i:s').' <a href="'.$_POST['IntelUrl'].'">Url saisi</a></p>';
 		$list_link = gen_list_link($url);
+		echo '<p>'.gen_table($list_link).'</p>';
 		$list_key=gen_list_key($list_link);
-		
+		echo '<p>'.gen_table($list_key).'</p>';
 
 	}
 	else{
