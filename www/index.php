@@ -148,7 +148,7 @@ function gen_xls($list, $name = NULL) {
 }
 function drive_push(){
 	$callStartTime = microtime(true);
-	exec('cd /home/artnod/gdrive && ../gopath/bin/drive push -quiet');
+	exec('cd /home/artnod/gdrive && ../gopath/bin/drive push -convert -quiet');
 	$callEndTime = microtime(true);
     $callTime = $callEndTime - $callStartTime;
     echo '<p>'.date('H:i:s').' Drive push en '.sprintf('%.4f',$callTime).' secondes</p>';
