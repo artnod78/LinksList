@@ -55,20 +55,10 @@ function gen_list_key($list){
 		$loop++;
 	}
 	$list_key = array_count_values($list_temp);
-	print_r($list_key);
-	echo '<br>';
 	$list_dest = array_keys($list_key);
-	print_r($list_dest);
-	echo '<br>';
 	$list_nbkey = array_values($list_key);
-	print_r($list_nbkey);
-	echo '<br>';
 	$nblink=count($list_key);
-	print_r($nblink);
-	echo '<br>';
 	$nbkey=array_sum($list_key);
-	print_r($nbkey);
-	echo '<br>';
 	$list_data[0]= array('destination','nb cle','intel url');
 	$loop=1;
 	while($loop < $nblink){
