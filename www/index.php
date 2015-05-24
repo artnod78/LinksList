@@ -176,15 +176,15 @@ function drive_push(){
 		echo date('H:i:s').'<a href="'.$_POST['IntelUrl'].'"> Url saisi</a></p>';
 
 		$list_link = gen_list_link($_POST['IntelUrl']);
-		$list_link = gen_list_key($list_link);
-		print_r $list_link;
-		echo '<p>'.gen_list_table($list_link).'</p>';
-		
-		echo '<p>'.gen_key_table($list_key).'</p>';
-		
-		gen_xls($list_link, $list_key, $_POST['IntelUrl']);
+		$list_key = gen_list_key($list_link);
 
-		drive_push();
+		// echo '<p>'.gen_list_table($list_link).'</p>';
+		
+		// echo '<p>'.gen_key_table($list_key).'</p>';
+		
+		// gen_xls($list_link, $list_key, $_POST['IntelUrl']);
+
+		// drive_push();
 	}else{
 		echo '<form action="./" method="post">
 			<p>
