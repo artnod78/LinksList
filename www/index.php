@@ -124,7 +124,7 @@ function gen_xls($list, $name = NULL) {
 	$objPHPExcel->getActiveSheet()->fromArray($list, null, 'A1');
 	$callEndTime = microtime(true);
 	$callTime = $callEndTime - $callStartTime;
-	echo date('H:i:s').' Ajout des donnees en '.sprintf('%.4f',$callTime).' secondes<br>';
+	echo date('H:i:s').' Ajout des donnees en '.sprintf('%.4f',$callTime).' secondes</p>';
 	// Rename worksheet
 	$objPHPExcel->getActiveSheet()->setTitle('Links List');
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
@@ -135,15 +135,15 @@ function gen_xls($list, $name = NULL) {
 	$objWriter->save('xlsx/'.$name.'.xlsx');
 	$callEndTime = microtime(true);
 	$callTime = $callEndTime - $callStartTime;
-	echo date('H:i:s').' Sauvegarde au format Excel 2007 en '.sprintf('%.4f',$callTime).' secondes<br>';
-	echo date('H:i:s').' Fichier disponible <a href="xlsx/'.$name.'.xlsx">ici</a><br>';
+	echo '<p>'.date('H:i:s').' Sauvegarde au format Excel 2007 en '.sprintf('%.4f',$callTime).' secondes<br>';
+	echo date('H:i:s').' Fichier disponible <a href="xlsx/'.$name.'.xlsx">ici</a></p>';
 	// Save Excel 95 file
 	$callStartTime = microtime(true);
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 	$objWriter->save('xls/'.$name.'.xls');
 	$callEndTime = microtime(true);
 	$callTime = $callEndTime - $callStartTime;
-	echo date('H:i:s').' Sauvegarde au format Excel 95 en '.sprintf('%.4f',$callTime).' secondes<br>';
+	echo '<p>'.date('H:i:s').' Sauvegarde au format Excel 95 en '.sprintf('%.4f',$callTime).' secondes<br>';
 	echo date('H:i:s').' Fichier disponible <a href="xls/'.$name.'.xls">ici</a></p>';
 }
 function drive_push(){
