@@ -34,7 +34,7 @@ function gen_list_link($url){
         $intel_url = 'https://www.ingress.com/intel?ll='.$moy_x.','.$moy_y.'&z='.$zoom.'&pls='.$link;
         $gmap_source = 'https://www.google.fr/maps/search/'.$gps_source;
         $gmap_destination = 'https://www.google.fr/maps/search/'.$gps_destination;
-        $list_data[$loop] = array($ordre, $gps_source, $gps_destination, 'A Remplir',  'A Remplir',  $intel_url, $gmap_source, $gmap_destination);
+        $list_data[$loop] = array($ordre, $gps_source, $gps_destination, '__A Remplir__',  '__A Remplir__',  $intel_url, $gmap_source, $gmap_destination);
         $loop++;
     }
     $callEndTime = microtime(true);
