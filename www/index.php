@@ -72,7 +72,7 @@ function gen_list_key($list){
 		echo '<p>'.date('H:i:s').' Url ok<br>';
 		echo date('H:i:s').'<a href="'.$_POST['IntelUrl'].'"> Url saisi</a></p>';
 		$list_link = gen_list_link($url);
-		gen_list_key($list_link)
+		gen_list_key($list_link);
 		
 
 	}
