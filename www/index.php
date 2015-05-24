@@ -118,7 +118,7 @@ function gen_xls($list_link, $list_key, $name = NULL) {
 	date_default_timezone_set('Europe/Paris');
 	require_once('Classes/PHPExcel.php');
 	// Create new PHPExcel object
-	echo date('H:i:s'), ' Creation de l\'objet PHPExcel<br>';
+	echo 'Creation de l\'objet PHPExcel<br>';
 	$callStartTime = microtime(true);
 	$objPHPExcel = new PHPExcel();	
 	// Create a first sheet, representing sales data
