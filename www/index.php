@@ -60,8 +60,6 @@ function gen_list_key($list){
 	if (test_url($_POST['IntelUrl'])){
 		echo '<p>'.date('H:i:s').' Url ok<br>';
 		echo date('H:i:s').'<a href="'.$_POST['IntelUrl'].'"> Url saisi</a></p>';
-		$list_link = gen_list_link($_POST['IntelUrl']);
-		$list_key = gen_list_key($list_link);
 	}
 	else{
 		echo '<form action="./" method="post">
