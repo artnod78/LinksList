@@ -11,7 +11,6 @@ function test_url($url){
 }
 
 function gen_list_link($url){
-    $callStartTime = microtime(true);
     $zoom = explode('&', explode('=', $_POST['IntelUrl'])[2])[0];
     $list = explode('_', explode('=', $_POST['IntelUrl'])[3]);
     $loop=1;
@@ -37,16 +36,12 @@ function gen_list_link($url){
         $list_data[$loop] = array($ordre, $gps_source, $gps_destination, '__A Remplir__',  '__A Remplir__',  $intel_url, $gmap_source, $gmap_destination);
         $loop++;
     }
-    $callEndTime = microtime(true);
-    $callTime = $callEndTime - $callStartTime;
-    echo '<p>Liste des liens généré en '.sprintf('%.4f',$callTime).' secondes<br>';
 	$nblink=count($list_data)-1;
-	echo $nblink.' liens</p>';
+	echo $nblink.' liens';
     return $list_data;
 }
 
 function gen_list_key($list){
-	$callStartTime = microtime(true);
 	$loop=0;
 	foreach($list as $link){
 		if($loop >= 1){
@@ -65,16 +60,11 @@ function gen_list_key($list){
 		$list_data[$loop + 1] = array($list_dest[$loop],$list_nbkey[$loop],'https://www.ingress.com/intel?pll='.$list_dest[$loop]);
 		$loop++;
 	}
-	$callEndTime = microtime(true);
-    $callTime = $callEndTime - $callStartTime;
-    echo '<p>Liste des clés génére en '.sprintf('%.4f',$callTime).' secondes<br>';
-	echo $nblink.' destinations<br>';
-	echo $nbkey.' clé</p>';
+	echo $nblink.' destinations</p>';
 	return $list_data;
 }
 
 function gen_table($list){
-	$callStartTime = microtime(true);
     $starter = 'http';
     $table = '<table border="1">';
     $loop=0;
@@ -101,9 +91,6 @@ function gen_table($list){
 		$loop++;
         }
         $table .= '</table>';
-        $callEndTime = microtime(true);
-        $callTime = $callEndTime - $callStartTime;
-        echo '<p>Tableau généré en '.sprintf('%.4f',$callTime).' secondes';
         return $table;
 }
 
@@ -168,9 +155,9 @@ function drive_push(){
 		echo '<a href="'.$_POST['IntelUrl'].'">Url saisi</a></p>';
 		
 		$list_link = gen_list_link($url);
-		echo gen_table($list_link).'</p>';
-		
 		$list_key=gen_list_key($list_link);
+		
+		echo gen_table($list_link).'</p>';
 		echo gen_table($list_key).'</p>';
 		
 		gen_xls($list_link, $list_key, $_POST['IntelUrl']);
