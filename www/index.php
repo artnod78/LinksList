@@ -62,7 +62,6 @@ function gen_list_key($list){
 		list_data[$loop] =array($list_dest[$loop], $list_nbkey[$loop], 'www.ingress.com/intel/pll='.$list_dest[$loop]);
 		$loop++;
 	}
-	print_r(list_data);
 }
 
 ?>
