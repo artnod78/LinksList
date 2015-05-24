@@ -52,36 +52,18 @@ function gen_list_key($list){
 		$loop++;
 	}
 	$list_key = array_count_values($list_temp);
-	// print_r $list_key;
-	// $list_data[0] = array('Destination', 'Nb cle', 'intel_url');
-	// $callEndTime = microtime(true);
-    // $callTime = $callEndTime - $callStartTime;
-    // echo '<p>'.date('H:i:s').' Liste des key genere en '.sprintf('%.4f',$callTime).' secondes<br>';
-	// $nbdest=count($list_key);
-	// echo date('H:i:s').' '.$nbdest.' destinations<br>';
-	// $nbkey=array_sum($list_key);
-	// echo date('H:i:s').' '.$nbkey.' cle</p>';
-	// return $list_key;
+
 }
 ?>
 <h1><a href="./">Links List</a></h1>
 <?php
 	if (test_url($_POST['IntelUrl'])){
-
 		echo '<p>'.date('H:i:s').' Url ok<br>';
 		echo date('H:i:s').'<a href="'.$_POST['IntelUrl'].'"> Url saisi</a></p>';
-
 		$list_link = gen_list_link($_POST['IntelUrl']);
 		$list_key = gen_list_key($list_link);
-
-		// echo '<p>'.gen_list_table($list_link).'</p>';
-		
-		// echo '<p>'.gen_key_table($list_key).'</p>';
-		
-		// gen_xls($list_link, $list_key, $_POST['IntelUrl']);
-
-		// drive_push();
-	}else{
+	}
+	else{
 		echo '<form action="./" method="post">
 			<p>
 			<input type="text" name="IntelUrl" />
