@@ -43,6 +43,7 @@ function gen_list($url){
         return $list_data;
 }
 function gen_list_key($list){
+	$callStartTime = microtime(true);
 	$loop=0;
 	foreach($list as $link){
 		if($loop >= 1){
@@ -51,6 +52,13 @@ function gen_list_key($list){
 		$loop++;
 	}
 	$list_key = array_count_values($list_dest);
+	$callEndTime = microtime(true);
+    $callTime = $callEndTime - $callStartTime;
+    echo '<p>'.date('H:i:s').' Liste des key genere en '.sprintf('%.4f',$callTime).' secondes<br>';
+	$nbdest=count($list_key);
+	echo date('H:i:s').' '.$nbdest.' destinations<br>';
+	$nbkey=array_sum($list_key);
+	echo date('H:i:s').' '.$nbkey.' key</p>';
 	return $list_key;
 }
 function gen_list_table($list){
