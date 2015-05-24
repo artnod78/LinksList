@@ -53,15 +53,15 @@ function gen_list_key($list){
 	}
 	$list_key = array_count_values($list_temp);
 	print_r $list_key;
-	$list_data[0] = array('Destination', 'Nb cle', 'intel_url');
-	$callEndTime = microtime(true);
-    $callTime = $callEndTime - $callStartTime;
-    echo '<p>'.date('H:i:s').' Liste des key genere en '.sprintf('%.4f',$callTime).' secondes<br>';
-	$nbdest=count($list_key);
-	echo date('H:i:s').' '.$nbdest.' destinations<br>';
-	$nbkey=array_sum($list_key);
-	echo date('H:i:s').' '.$nbkey.' cle</p>';
-	return $list_key;
+	// $list_data[0] = array('Destination', 'Nb cle', 'intel_url');
+	// $callEndTime = microtime(true);
+    // $callTime = $callEndTime - $callStartTime;
+    // echo '<p>'.date('H:i:s').' Liste des key genere en '.sprintf('%.4f',$callTime).' secondes<br>';
+	// $nbdest=count($list_key);
+	// echo date('H:i:s').' '.$nbdest.' destinations<br>';
+	// $nbkey=array_sum($list_key);
+	// echo date('H:i:s').' '.$nbkey.' cle</p>';
+	// return $list_key;
 }
 function gen_list_table($list){
 	$callStartTime = microtime(true);
