@@ -52,7 +52,7 @@ function gen_list_key($list){
 		$loop++;
 	}
 	$list_key = array_count_values($list_temp);
-	print_r $list_key;
+	// print_r $list_key;
 	// $list_data[0] = array('Destination', 'Nb cle', 'intel_url');
 	// $callEndTime = microtime(true);
     // $callTime = $callEndTime - $callStartTime;
