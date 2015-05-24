@@ -9,7 +9,7 @@ function test_url($url){
                 return false;
         }
 }
-function gen_list($url){
+function gen_list_link($url){
         $callStartTime = microtime(true);
         $zoom = explode('&', explode('=', $_POST['IntelUrl'])[2])[0];
         $list = explode('_', explode('=', $_POST['IntelUrl'])[3]);
@@ -58,7 +58,7 @@ function gen_list_key($list){
 	$nbdest=count($list_key);
 	echo date('H:i:s').' '.$nbdest.' destinations<br>';
 	$nbkey=array_sum($list_key);
-	echo date('H:i:s').' '.$nbkey.' key</p>';
+	echo date('H:i:s').' '.$nbkey.' cle</p>';
 	return $list_key;
 }
 function gen_list_table($list){
@@ -97,7 +97,7 @@ function gen_list_table($list){
 function gen_key_table($list){
 	$callStartTime = microtime(true);
 	$table = '<table border="1"><tr><th>Portail Destination</th><th>Nb cle</th><th>Intel Url</th></tr>';
-	foreach (gen_list_key($list) as $clef => $valeur) {
+	foreach ($list as $clef => $valeur) {
         $table .= '<tr><td>'.$clef.'</td><td>'.$valeur.'</td><td><a href="http://www.ingress.com/intel?pll='.$clef.'"> Url ici</a></td></tr>';
     }
 	$table .= '</table>';
@@ -106,7 +106,7 @@ function gen_key_table($list){
     echo date('H:i:s').' Tableau genere en '.sprintf('%.4f',$callTime).' secondes</p>';
     return $table;
 }
-function gen_xls($list, $name = NULL) {
+function gen_xls($list_link, $list_key, $name = NULL) {
 	echo '<p>'.date('H:i:s').' Debut de la generation des xls<br>';
 	if( ! $name){
 		$name = md5(uniqid() . microtime(TRUE) . mt_rand());
@@ -118,17 +118,21 @@ function gen_xls($list, $name = NULL) {
 	require_once('Classes/PHPExcel.php');
 	// Create new PHPExcel object
 	echo date('H:i:s'), ' Creation de l\'objet PHPExcel<br>';
-	$objPHPExcel = new PHPExcel();
-	// Add  data
 	$callStartTime = microtime(true);
-	$objPHPExcel->getActiveSheet()->fromArray($list, null, 'A1');
+	$objPHPExcel = new PHPExcel();	
+	// Create a first sheet, representing sales data
+	$objPHPExcel->setActiveSheetIndex(0);
+	$objPHPExcel->getActiveSheet()->fromArray($list_link, null, 'A1');
+	$objPHPExcel->getActiveSheet()->setTitle('Links List');
+	// Create a new worksheet, after the default sheet
+	$objPHPExcel->createSheet();
+	$objPHPExcel->setActiveSheetIndex(1);
+	$objPHPExcel->getActiveSheet()->fromArray($list_key, null, 'A1');
+	$objPHPExcel->getActiveSheet()->setTitle('Key List');
 	$callEndTime = microtime(true);
 	$callTime = $callEndTime - $callStartTime;
 	echo date('H:i:s').' Ajout des donnees en '.sprintf('%.4f',$callTime).' secondes</p>';
-	// Rename worksheet
-	$objPHPExcel->getActiveSheet()->setTitle('Links List');
-	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
-	$objPHPExcel->setActiveSheetIndex(0);
+
 	// Save Excel 2007 file
 	$callStartTime = microtime(true);
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
@@ -137,6 +141,7 @@ function gen_xls($list, $name = NULL) {
 	$callTime = $callEndTime - $callStartTime;
 	echo '<p>'.date('H:i:s').' Sauvegarde au format Excel 2007 en '.sprintf('%.4f',$callTime).' secondes<br>';
 	echo date('H:i:s').' Fichier disponible <a href="xlsx/'.$name.'.xlsx">ici</a></p>';
+
 	// Save Excel 95 file
 	$callStartTime = microtime(true);
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
@@ -161,11 +166,14 @@ function drive_push(){
 		echo '<p>'.date('H:i:s').' Url ok<br>';
 		echo date('H:i:s').'<a href="'.$_POST['IntelUrl'].'"> Url saisi</a></p>';
 
-		$list = gen_list($_POST['IntelUrl']);		
-		echo '<p>'.gen_list_table($list).'</p>';
+		$list_link = gen_list($_POST['IntelUrl']);
+		$list_link = gen_list_key($list_link);
 		
-		echo '<p>'.gen_key_table($list).'</p>';
-		gen_xls($list, $_POST['IntelUrl']);
+		echo '<p>'.gen_list_table($list_link).'</p>';
+		
+		echo '<p>'.gen_key_table($list_key).'</p>';
+		
+		gen_xls($list_link, $list_key, $_POST['IntelUrl']);
 
 		drive_push();
 	}else{
