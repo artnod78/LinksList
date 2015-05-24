@@ -53,9 +53,6 @@ function gen_list_key($list){
 		$loop++;
 	}
 	$list_key = array_count_values($list_temp);
-
-	$list_data[0] = array('Destination', 'Nb cle', 'intel_url');
-
 }
 
 ?>
